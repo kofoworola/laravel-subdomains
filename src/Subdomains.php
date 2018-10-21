@@ -37,4 +37,14 @@ class Subdomains
     public function parameterValue(){
         return $this->value;
     }
+
+    /**
+     * Get owner model of current subdomain
+     * @return mixed
+     */
+    public function owner(){
+        $owner = config('subdomains.model');
+        $column = config('subdomains.column');
+        return $owner::where($column,$this->value)->first();
+    }
 }

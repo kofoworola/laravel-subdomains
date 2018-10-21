@@ -1,0 +1,39 @@
+{
+  "name": "kofoworola/laravel-subdomain",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kofo Okesola",
+      "email": "okesolakofo@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/routing": "5.5.x|5.6.x|5.7.x",
+    "illuminate/session": "5.5.x|5.6.x|5.7.x",
+    "illuminate/support": "5.5.x|5.6.x|5.7.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "kofoworola\\Subdomains\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "kofoworola\\Subdomains\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "^3.7",
+    "phpunit/phpunit": "^7.4"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "kofoworola\\Subdomains\\ServiceProvider"
+      ],
+      "aliases": {
+      }
+    }
+  }
+}

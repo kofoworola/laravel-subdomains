@@ -3,7 +3,9 @@
 namespace kofoworola\Subdomains;
 
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+
+class ServiceProvider extends BaseServiceProvider
 {
     public function register(){
         $this->app->singleton(Subdomains::class,function ($app){
@@ -13,6 +15,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function boot(){
         $config_path = __DIR__."/../config/subdomains.php";
-        $this->mergeConfigFrom($config_path,'subdomains');
+        $this->publishes([$config_path => config_path('subdomains.php')]);
     }
 }

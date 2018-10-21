@@ -33,6 +33,7 @@
         "kofoworola\\Subdomains\\ServiceProvider"
       ],
       "aliases": {
+        "Subdomains": "kofoworola\\Subdomains\\Facade\\Subdomains"
       }
     }
   }

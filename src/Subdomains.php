@@ -11,7 +11,30 @@ namespace kofoworola\Subdomains;
 
 class Subdomains
 {
-    public function parameter(){
+
+    private $value;
+
+    /**
+     * Get name of parameter
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public function parameterName(){
         return config('subdomains.subdomain');
+    }
+
+    /**
+     * Set the value of the subdomain called
+     * @param $value
+     */
+    public function setValue($value){
+        $this->value = $value;
+    }
+
+    /**
+     * Get value of subdomain being called
+     * @return mixed
+     */
+    public function parameterValue(){
+        return $this->value;
     }
 }

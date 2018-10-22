@@ -15,6 +15,9 @@ use kofoworola\Subdomains\Facade\Subdomains;
 class HasSubdomain
 {
     public function handle($request, Closure $next){
+        if(!Subdomains::owner()){
+            abort(404);
+        }
         if(!Subdomains::ownsModel()){
             abort(401);
         }

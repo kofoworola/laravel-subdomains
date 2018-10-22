@@ -17,6 +17,7 @@ class Subdomains
 
     private $name;
     private $value;
+    private $owner;
 
     public function __construct($name,$value)
     {
@@ -53,9 +54,12 @@ class Subdomains
      * @return mixed
      */
     public function owner(){
-        $owner = config('subdomains.model');
-        $column = config('subdomains.column');
-        return $owner::where($column,$this->value)->first();
+        if(!$this->owner){
+            $owner = config('subdomains.model');
+            $column = config('subdomains.column');
+            $this->owner = $owner::where($column,$this->value)->first();
+        }
+        return $this->owner;
     }
 
     /**
@@ -82,5 +86,21 @@ class Subdomains
         elseif (!is_null($models)){
             return $models->getKey() == $owner->getKey();
         }
+        return false;
+    }
+
+    public function route($route,$param = [],$model= null){
+        $model = $model ?? $this->owner();
+        if(is_null($model))
+        {
+            abort("505","The model instance could not be found");
+            return;
+        }
+
+        $name = $this->parameterName();
+        $column = config('subdomains.column');
+        $data[$name] = $model->$column;
+        $data = array_merge($data, $param);
+        return route($route,$data);
     }
 }

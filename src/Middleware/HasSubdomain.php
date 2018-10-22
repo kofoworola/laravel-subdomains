@@ -10,10 +10,14 @@ namespace kofoworola\Subdomains\Middleware;
 
 
 use Closure;
+use kofoworola\Subdomains\Facade\Subdomains;
 
 class HasSubdomain
 {
     public function handle($request, Closure $next){
-
+        if(!Subdomains::ownsModel()){
+            abort(401);
+        }
+        return $next($request);
     }
 }

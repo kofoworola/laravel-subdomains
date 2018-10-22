@@ -9,7 +9,7 @@ e.g `company1.myapp.com`
 * [Facade](#facade)
 * [Middleware](#middleware)
 
-####<a name="installation"></a> Installation
+## <a name="installation"></a> Installation
 You can install this package via composer by
  
 ```composer require kofoworola/laravel-subdomain ```
@@ -31,7 +31,7 @@ You can install this package via composer by
 
 Then run `php artisan vendor:publish` to publish the configuration file
 
-####<a name="config"></a> Config
+## <a name="config"></a> Config
 The `config/subdomains.php` file:
 ```$xslt
 <?php
@@ -68,7 +68,7 @@ return [
 ```
 Once you have published the package, you can then set the configuration to your application's setup
 
-####<a name="usage"></a> Usage
+## <a name="usage"></a> Usage
 After setting up your routes to catch subdomains e.g
 ```$xslt
 Route::group(['domain' => '{app}.subdomains.app','middleware' => ['auth']],function (){
@@ -100,24 +100,24 @@ class SubController extends SubdomainController
 The parent controller automatically removes the subdomain parameter from list of paremeters
 so you don't have to add it to you parameter list everytime you want to get another parameter
 
-####<a name="facade"></a>Facade
+## <a name="facade"></a>Facade
 Using the `kofoworola\Subdomains\Facade\Subdomains` facade you can access helper functions:
 
-#####Getting the name of the parameter
-Use `Subdomains::parameterName()` to get the name of the subdomain parameter
+### Getting the name of the parameter
+Use `Subdomains::name()` to get the name of the subdomain parameter
 
-#####Getting the value of the subdomain
+### Getting the value of the subdomain
 Use `Subdomains::value()` to get the value of the subdomain parameter
 
-#####Getting the owner of the subdomain
+### Getting the owner of the subdomain
 Use `Subdomains::owner()` to get the model instance that owns the current subdomain
 
-#####Checking if the user has access to the subdomain
+### Checking if the user has access to the subdomain
 `Subdomains::ownsModel($user = null)` returns true or false depending on whether the user has access to the subdomain
 
 If no user is passed the current logged in user is used
 
-#####Getting a subdomain route
+###  Getting a subdomain route
 ```$xslt
 //If model is passed the value of its subdomain will be used to generate route
 //If not the current owner will be used
@@ -126,7 +126,7 @@ Subdomains::route('route.name',$params = [],$model = null);
 ```
 Can be used to generate a subdomain link 
 
-####<a name="middleware"></a> Middleware
+## <a name="middleware"></a> Middleware
 You can also add the `\kofoworola\Subdomains\Middleware\HasSubdomain` middleware to your routes.
 Firstly register it in your `Kernel`:
 ```$xslt

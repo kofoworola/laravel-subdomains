@@ -24,6 +24,7 @@ return [
 
         /*
          * The function/relationship that defines the link between the user model and the subdomain owner
+         * Can return Collection/Array of Models or single model
          */
         'function' => 'companies',
     ]

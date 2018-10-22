@@ -1,7 +1,7 @@
 {
   "name": "kofoworola/laravel-subdomain",
   "type": "library",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "authors": [
     {
       "name": "Kofo Okesola",

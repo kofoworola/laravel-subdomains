@@ -29,7 +29,7 @@ class Subdomains
      * Get name of parameter
      * @return \Illuminate\Config\Repository|mixed
      */
-    public function parameterName(){
+    public function name(){
         return $this->name;
     }
 
@@ -45,7 +45,7 @@ class Subdomains
      * Get value of subdomain being called
      * @return mixed
      */
-    public function parameterValue(){
+    public function value(){
         return $this->value;
     }
 
@@ -97,7 +97,7 @@ class Subdomains
             return;
         }
 
-        $name = $this->parameterName();
+        $name = $this->name();
         $column = config('subdomains.column');
         $data[$name] = $model->$column;
         $data = array_merge($data, $param);

@@ -13,5 +13,18 @@ return [
     /*
      * The column in the user
      */
-    'column' => 'slug'
+    'column' => 'slug',
+
+    'middleware' => [
+
+        /*
+         * The user model to perform authentication checking on
+         */
+        'user_model' => '\App\User',
+
+        /*
+         * The function/relationship that defines the link between the user model and the subdomain owner
+         */
+        'function' => 'companies',
+    ]
 ];

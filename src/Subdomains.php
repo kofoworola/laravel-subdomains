@@ -9,6 +9,9 @@
 namespace kofoworola\Subdomains;
 
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+
 class Subdomains
 {
 
@@ -53,5 +56,31 @@ class Subdomains
         $owner = config('subdomains.model');
         $column = config('subdomains.column');
         return $owner::where($column,$this->value)->first();
+    }
+
+    /**
+     * Checks if the user owns the current model
+     * @param null $user
+     * @return bool
+     */
+    public function ownsModel($user = null){
+        $user = $user ?? Auth::user();
+        $function = config('subdomains.middleware')['function'];
+        $owner = $this->owner();
+
+        $models = $user->$function ?? $user->$function();
+        if($models instanceof Collection || is_array($models)){
+            $models = collect($models);
+            $filtered = $models->filter(function ($value,$key) use ($owner){
+               return $value->getKey() == $owner->getKey();
+            });
+            if($filtered->count() < 1)
+                return false;
+            else
+                return true;
+        }
+        elseif (!is_null($models)){
+            return $models->getKey() == $owner->getKey();
+        }
     }
 }
